@@ -6,6 +6,8 @@ use COM;
 use Exception;
 use Illuminate\Http\Request;
 use Mike42\Escpos\CapabilityProfile;
+use Mike42\Escpos\PrintConnectors\FilePrintConnector;
+use Mike42\Escpos\PrintConnectors\NetworkPrintConnector;
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 use Mike42\Escpos\Printer;
 
@@ -33,7 +35,11 @@ class PrintContent extends Controller
         try {
             // Use SP2000 To enable the thermal ESC/POS
             $profile = CapabilityProfile::load("SP2000");
-            $connector = new WindowsPrintConnector("HP LaserJet Professional P1102");
+
+            $connector = new NetworkPrintConnector("10.x.x.x", 9100);
+            // $connector = new WindowsPrintConnector("HP LaserJet Professional P1102");
+            $connector = new FilePrintConnector("/dev/usb/");
+
             $printer = new Printer($connector, $profile);
             $printer->text("Hello World!\n");
             $printer->cut();

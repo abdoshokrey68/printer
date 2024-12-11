@@ -12,42 +12,6 @@ use Tenants\Http\Controllers\TenantsController;
 use \Support\Attributes\ListensTo;
 use \Support\Attributes\Property;
 
-class MyClass {
-    public function returnHello()
-    {
-        $currency = Number::useLocale('en');
-        // $currency->currency('1000');
-        return $currency;
-    }
-}
-trait MyTrait {
-    public function traitMessage()
-    {
-        return( 'trait message');
-    }
-}
-interface MyInterface {
-    public function message();
-}
-abstract class myAbstract {
-    public function myMessage() {
-        return('abscract message');
-    }
-}
-
-// #[ReadOnly]
-class Web extends MyClass implements MyInterface {
-    use MyTrait;
-    public function message () {
-
-    }
-
-    public function traitMessage() {
-        return $this->returnHello();
-    }
-
-}
-
 Route::get('test', function () {
     phpinfo();
 });
