@@ -1,0 +1,23 @@
+type Query {
+    user(id: ID @eq): User! @find
+    users(first: Int!, page: Int): [User!]! @paginate
+}
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    created_at: String
+    updated_at: String
+}
+
+type PaginatorInfo {
+    count: Int!
+    currentPage: Int!
+    firstItem: Int
+    hasMorePages: Boolean!
+    lastItem: Int
+    lastPage: Int!
+    perPage: Int!
+    total: Int!
+}
